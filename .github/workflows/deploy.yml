@@ -31,7 +31,7 @@ jobs:
           <p>Telefono: ${IL_TELEFONO}</p>
           <p>Chiave API: ${LA_CHIAVE_API}</p>
         </body>
-        </html>" > index.html
+        </html>" > public/index.html
       env:
         IL_TELEFONO: ${{ secrets.IL_TELEFONO }}
         LA_CHIAVE_API: ${{ secrets.LA_CHIAVE_API }}
@@ -40,4 +40,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
+        publish_dir: ./public
