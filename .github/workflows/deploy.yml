@@ -4,11 +4,10 @@ on:
   push:
     branches:
       - main
-  
   workflow_dispatch:
 
 permissions:
-  contents: write  # Garantisce che il token abbia i permessi necessari
+  contents: write
 
 jobs:
   build:
@@ -22,7 +21,9 @@ jobs:
       run: mkdir -p public
 
     - name: Print variables
-      run: echo "Telefono: ${{ vars.IL_TELEFONO }}" && echo "Chiave API: ${{ vars.LA_CHIAVE_API }}"
+      run: |
+        echo "Telefono: ${{ vars.IL_TELEFONO }}"
+        echo "Chiave API: ${{ vars.LA_CHIAVE_API }}"
 
     - name: Create HTML file with secrets
       run: |
