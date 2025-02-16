@@ -32,7 +32,7 @@ jobs:
     - name: Create HTML file with secrets
       run: |
         echo "il_telefono=${{vars.IL_TELEFONO}}" >> $GITHUB_OUTPUT
-        echo il_telefono
+        echo ${{il_telefono}}
         echo "<!DOCTYPE html>
         <html lang='en'>
         <head>
@@ -42,7 +42,7 @@ jobs:
         </head>
         <body>
           <h1>Variables</h1>
-          <p>'Telefono: ' + il_telefono</p>
+          <p>Telefono: ${{il_telefono}}</p>
           <p>Chiave API: $LA_CHIAVE_API</p>
         </body>
         </html>" > public/index.html
