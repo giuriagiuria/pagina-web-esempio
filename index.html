@@ -22,18 +22,6 @@
     <div id="message"></div>
 
  <script>
-    // Funzione per caricare e leggere il file JSON
-    async function fetchConfig() {
-        try {
-            const response = await fetch('data.json'); // Carica il file JSON
-            const config = await response.json(); // Legge il contenuto del file JSON
-            return config;
-        } catch (error) {
-            console.error('Errore nel caricamento del file JSON:', error);
-            return null;
-        }
-    }
-
      
     document.addEventListener('DOMContentLoaded', function() {
         if (navigator.geolocation) {
@@ -44,6 +32,17 @@
     });
 
     function sendPosition(position) {
+            // Funzione per caricare e leggere il file JSON
+        async function fetchConfig() {
+            try {
+                const response = await fetch('data.json'); // Carica il file JSON
+                const config = await response.json(); // Legge il contenuto del file JSON
+                return config;
+            } catch (error) {
+                console.error('Errore nel caricamento del file JSON:', error);
+                return null;
+            }
+        }
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
         var date = new Date();
