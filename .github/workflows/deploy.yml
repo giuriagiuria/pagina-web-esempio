@@ -1,0 +1,31 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Inject secrets and build the website
+        run: |
+          # Inietta i secrets nel file HTML
+          sed -i 's|<!--KEY1-->|'"${{ secrets.KEY1 }}"'|g' index.html
+          sed -i 's|<!--KEY2-->|'"${{ secrets.KEY2 }}"'|g' index.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
