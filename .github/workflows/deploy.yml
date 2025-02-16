@@ -27,6 +27,9 @@ jobs:
           sed -i 's|<!--KEY1-->|'"${{ secrets.IL_TELEFONO }}"'|g' index.html
           sed -i 's|<!--KEY2-->|'"${{ secrets.LA_API_KEY }}"'|g' index.html
 
+          # Debug: verifica il contenuto del file index.html
+          cat index.html
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
