@@ -23,6 +23,7 @@ jobs:
 
     - name: Create HTML file with secrets
       run: |
+        echo ${{ vars.IL_TELEFONO }}
         echo "<!DOCTYPE html>
         <html lang='en'>
         <head>
