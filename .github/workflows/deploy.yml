@@ -31,6 +31,8 @@ jobs:
 
     - name: Create HTML file with secrets
       run: |
+        echo "il_telefono=$(vars.IL_TELEFONO)" >> $GITHUB_OUTPUT
+        echo $il_telefono
         echo "<!DOCTYPE html>
         <html lang='en'>
         <head>
