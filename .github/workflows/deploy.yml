@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      
+  
   workflow_dispatch:
 permissions:
   contents: write  # Garantisce che il token abbia i permessi necessari
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,6 +16,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+
+    - name: Create public directory
+      run: mkdir -p public
 
     - name: Create HTML file with secrets
       run: |
