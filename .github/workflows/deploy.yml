@@ -21,9 +21,11 @@ jobs:
     - name: Create public directory
       run: mkdir -p public
 
+    - name: Print variables
+      run: echo "Telefono: ${{ vars.IL_TELEFONO }}" && echo "Chiave API: ${{ vars.LA_CHIAVE_API }}"
+
     - name: Create HTML file with secrets
       run: |
-        echo ${{ vars.IL_TELEFONO }}
         echo "<!DOCTYPE html>
         <html lang='en'>
         <head>
