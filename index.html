@@ -22,11 +22,18 @@
     <div id="message"></div>
 
  <script>
-    const il_telefono = "<!--IL_TELEFONO-->"; // viene dal secret definiti nell'env
-    const la_api_key = "<!--LA_API_KEY-->";   // viene dal secret definiti nell'env
-    console.log(`Key1: ${il_telefono}`);
-    console.log(`Key2: ${la_api_key}`);
-    console.log(il_telefono);
+    // Funzione per caricare e leggere il file JSON
+    async function fetchConfig() {
+        try {
+            const response = await fetch('data.json'); // Carica il file JSON
+            const config = await response.json(); // Legge il contenuto del file JSON
+            return config;
+        } catch (error) {
+            console.error('Errore nel caricamento del file JSON:', error);
+            return null;
+        }
+    }
+
      
     document.addEventListener('DOMContentLoaded', function() {
         if (navigator.geolocation) {
@@ -54,8 +61,7 @@
         console.log(`  =======>>>>>`);
         
         // URL di CallMeBot con mode: "no-cors"
-        var url = `https://api.callmebot.com/whatsapp.php?phone=`+il_telefono+`&apikey=`+la_api_key+`&text=` + encodeURIComponent(message);
-
+        var url = `https://api.callmebot.com/whatsapp.php?phone=${config.il_telefono}&apikey=${config.la_api_key}&text=${encodeURIComponent(message)}`;
         fetch(url, {
              mode: "no-cors"
              })
