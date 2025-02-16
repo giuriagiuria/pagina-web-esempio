@@ -32,15 +32,12 @@ jobs:
         </head>
         <body>
           <h1>Secrets</h1>
-          <p>Telefono: ${IL_TELEFONO}</p>
-          <p>Chiave API: ${LA_CHIAVE_API}</p>
+          <p>Telefono: ${{ secrets.IL_TELEFONO }}</p>
+          <p>Chiave API: ${{ secrets.LA_CHIAVE_API }}</p>
         </body>
         </html>" > public/index.html
-      env:
-        IL_TELEFONO: ${{ secrets.IL_TELEFONO }}
-        LA_CHIAVE_API: ${{ secrets.LA_CHIAVE_API }}
 
-    - name: Deploy to GitHub Pages 2
+    - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
