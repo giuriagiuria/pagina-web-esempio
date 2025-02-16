@@ -32,8 +32,8 @@ jobs:
         </head>
         <body>
           <h1>Variables</h1>
-          <p>Telefono: ${{ variables.IL_TELEFONO }}</p>
-          <p>Chiave API: ${{ variables.LA_CHIAVE_API }}</p>
+          <p>Telefono: ${{ vars.IL_TELEFONO }}</p>
+          <p>Chiave API: ${{ vars.LA_CHIAVE_API }}</p>
         </body>
         </html>" > public/index.html
 
