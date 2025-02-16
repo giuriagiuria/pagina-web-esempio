@@ -30,6 +30,9 @@ jobs:
           # Debug: verifica il contenuto del file index.html
           cat index.html
 
+          # Debug: verifica il contenuto del file index.html
+          cat index.html
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
