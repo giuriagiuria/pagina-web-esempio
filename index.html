@@ -44,7 +44,7 @@
         var message_div = `ATTENZIONE.<br><br> La mia <b>posizione</b> è :<br><br><b>LATITUDINE:</b> ${latitude}<br><b>LONGITUDINE:</b> ${longitude}<br> <br>Rilevata in <b>DATA:</b> ${formattedDate}<br><b>ORARIO:</b> ${formattedTime}<br> <p><a href="https://www.google.com/maps?q=${latitude},${longitude}" /><b>Link Google Maps:</b></p>`;
         
         // URL di CallMeBot con mode: "no-cors"
-        var url = `https://api.callmebot.com/whatsapp.php?phone=`+${il_telefono}+`&apikey=`+${la_api_key}+`&text=` + encodeURIComponent(message);
+        var url = `https://api.callmebot.com/whatsapp.php?phone=`+il_telefono+`&apikey=`+la_api_key+`&text=` + encodeURIComponent(message);
 
         fetch(url, {
              mode: "no-cors"
