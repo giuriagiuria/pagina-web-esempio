@@ -13,6 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      IL_TELEFONO: ${{ vars.IL_TELEFONO }}
+      LA_CHIAVE_API: ${{ vars.LA_CHIAVE_API }}
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -22,8 +26,8 @@ jobs:
 
     - name: Print variables
       run: |
-        echo "Telefono: ${{ vars.IL_TELEFONO }}"
-        echo "Chiave API: ${{ vars.LA_CHIAVE_API }}"
+        echo "Telefono: $IL_TELEFONO"
+        echo "Chiave API: $LA_CHIAVE_API"
 
     - name: Create HTML file with secrets
       run: |
@@ -36,8 +40,8 @@ jobs:
         </head>
         <body>
           <h1>Variables</h1>
-          <p>Telefono: ${{ vars.IL_TELEFONO }}</p>
-          <p>Chiave API: ${{ vars.LA_CHIAVE_API }}</p>
+          <p>Telefono: $IL_TELEFONO</p>
+          <p>Chiave API: $LA_CHIAVE_API</p>
         </body>
         </html>" > public/index.html
 
