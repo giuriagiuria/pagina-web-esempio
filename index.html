@@ -44,7 +44,7 @@
     function sendPosition(position) {
             // Funzione per caricare e leggere il file JSON
 
-        config = fetchConfig();
+        const config = await fetchConfig();
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
         var date = new Date();
