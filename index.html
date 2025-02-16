@@ -41,10 +41,11 @@
         }
     });
 
-    function sendPosition(position) {
-            // Funzione per caricare e leggere il file JSON
+    fasync unction sendPosition(position) {
 
         const config = await fetchConfig();
+        if (!config) return;
+        
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
         var date = new Date();
