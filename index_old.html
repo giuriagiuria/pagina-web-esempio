@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Mia Web App</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            background-color: #000000;
+            color: #00FF00;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Localizzata la tua posizione SPAZIO-TEMPORALE:</h1>
+    <p>-----------------------------------------------</p><br>
+    <div id="message"></div>
+
+ <script>
+    async function fetchConfig() {
+    try {
+            const response = await fetch('data.json'); // Carica il file JSON
+            const config = await response.json(); // Legge il contenuto del file JSON
+            return config;
+        } catch (error) {
+            console.error('Errore nel caricamento del file JSON:', error);
+            return null;
+        }
+    }
+     
+    document.addEventListener('DOMContentLoaded', function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(sendPosition);
+        } else {
+            alert("Geolocalizzazione non supportata dal browser.");
+        }
+    });
+
+    async function sendPosition(position) {
+
+        const config = await fetchConfig();
+        if (!config) return;
+        
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var date = new Date();
+        var formattedDate = date.toLocaleDateString('it-IT');
+        var formattedTime = date.toLocaleTimeString('it-IT');
+
+        var message = `ATTENZIONE. La mia *posizione* è :\n*LATITUDINE:* ${latitude}\n*LONGITUDINE:* ${longitude}\nRilevata in *DATA:* ${formattedDate}\n*ORARIO:* ${formattedTime}\nLink Google Maps: https://www.google.com/maps?q=${latitude},${longitude}`;
+        
+        //questo serve solo per il div (vedi sotto)
+        var message_div = `ATTENZIONE.<br><br> La mia <b>posizione</b> è :<br><br><b>LATITUDINE:</b> ${latitude}<br><b>LONGITUDINE:</b> ${longitude}<br> <br>Rilevata in <b>DATA:</b> ${formattedDate}<br><b>ORARIO:</b> ${formattedTime}<br> <p><a href="https://www.google.com/maps?q=${latitude},${longitude}" /><b>Link Google Maps:</b></p>`;
+            
+        // URL di CallMeBot con mode: "no-cors"
+        var url = `https://api.callmebot.com/whatsapp.php?phone=${config.il_telefono}&apikey=${config.la_api_key}&text=${encodeURIComponent(message)}`;
+        fetch(url, {
+             mode: "no-cors"
+             })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                displayMessage(message_div);
+            })
+            .catch(error => console.error('Errore:', error));
+    }
+
+    function displayMessage(message_div) {
+        
+        var messageContainer = document.getElementById('message');
+        messageContainer.innerHTML = message_div;
+    }
+</script>
+
+</body>
+</html>
