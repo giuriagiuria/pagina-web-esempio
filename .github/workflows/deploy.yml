@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write  # Aggiungi questa linea per dare i permessi necessari
+
 jobs:
   build:
     runs-on: ubuntu-latest
