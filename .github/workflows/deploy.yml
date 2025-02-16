@@ -12,11 +12,11 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     env:
       IL_TELEFONO: ${{ vars.IL_TELEFONO }}
       LA_CHIAVE_API: ${{ vars.LA_CHIAVE_API }}
-
+    environment: build
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
