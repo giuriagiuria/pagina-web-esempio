@@ -41,7 +41,7 @@
         }
     });
 
-    fasync unction sendPosition(position) {
+    async function sendPosition(position) {
 
         const config = await fetchConfig();
         if (!config) return;
