@@ -26,13 +26,10 @@ jobs:
 
     - name: Print variables
       run: |
-        echo "Telefono: $IL_TELEFONO"
-        echo "Chiave API: $LA_CHIAVE_API"
-
+        echo $IL_TELEFONO
+        echo $LA_API_KEY
     - name: Create HTML file with secrets
       run: |
-        echo "il_telefono=${{vars.IL_TELEFONO}}" >> $GITHUB_ENV
-        echo ${{env.il_telefono}}
         echo "<!DOCTYPE html>
         <html lang='en'>
         <head>
@@ -42,7 +39,7 @@ jobs:
         </head>
         <body>
           <h1>Variables</h1>
-          <p>Telefono: ${{env.il_telefono}}</p>
+          <p>Telefono: $IL_TELEFONO</p>
           <p>Chiave API: $LA_CHIAVE_API</p>
         </body>
         </html>" > public/index.html
